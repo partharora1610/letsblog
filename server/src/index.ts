@@ -1,7 +1,15 @@
+import Database from 'apps/database';
+import Server from 'apps/server';
 import getEnvVar, { parseEnv } from 'env/index';
+import { createServer } from 'http';
 parseEnv();
-import expressApp from 'apps/server';
 
-expressApp.listen(parseInt(getEnvVar('PORT')), () => {
+const database = new Database();
+const server = new Server(database);
+server.start();
+
+const httpServer = createServer({}, server.engine);
+
+httpServer.listen(parseInt(getEnvVar('PORT')), () => {
   console.log(`Server listening at ${getEnvVar('PORT')}`);
 });

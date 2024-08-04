@@ -3,6 +3,13 @@ import { config } from 'dotenv';
 
 const envSchema = z.object({
   PORT: z.string(),
+  JWT_SIGNING_KEY: z.string(),
+  JWT_EXPIRY: z.string(),
+  DATABASE_URL: z.string(),
+  GOOGLE_OAUTH_CLIENT_ID: z.string(),
+  GOOGLE_OAUTH_CLIENT_SECRET: z.string(),
+  GOOGLE_OAUTH_REDIRECT_URI: z.string(),
+  CLIENT_URL: z.string(),
 });
 
 export const parseEnv = (): void => {
